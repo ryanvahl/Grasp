@@ -1,15 +1,67 @@
-.example-container {
+.nav-container {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
   }
-
-  .example-sidenav {
+   
+  .sidenav {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 200px;
     background: rgba(204, 203, 203, 0.5);
   }
+
+/* .nav-link {
+  color: inherit;
+  text-decoration: none;
+} */
+
+/* .nav-link:before {
+  content: '';
+  background-color: hsla(196, 61%, 58%, .75);
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 100%;
+  height: 8px;
+  z-index: -1;
+  transition: all .3s ease-in-out;
+} */
+
+/* Link effect start */
+a {
+  background-image: linear-gradient(
+    to right,
+    #91a549,
+    #91a549 50%,
+    #000 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+a:before {
+  content: '';
+  background: white;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+}
+
+a:hover {
+  background-position: 0;
+ }
+
+ a:hover::before {
+  width: 100%;
+}
+/* Link effect end */

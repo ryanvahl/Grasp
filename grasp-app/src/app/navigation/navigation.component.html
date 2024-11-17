@@ -1,9 +1,23 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav class="example-sidenav" #sidenav mode="side">
-    Sidenav content
+<mat-sidenav-container class="nav-container">
+    <mat-sidenav class="sidenav" #sidenav mode="side">
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <a class="nav-link" [routerLink]="['/exercises']">Exercises</a>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <a class="nav-link" [routerLink]="['/programs']">Programs</a>
+            </mat-list-item>
+            <mat-list-item role="listitem">Item 3</mat-list-item>
+          </mat-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-    <p><button mat-button (click)="sidenav.toggle()">Menu</button></p>
+        <p><button mat-button (click)="sidenav.toggle()">Menu</button></p>
+        <div *ngIf="activeRoute === '/exercises'">
+            <app-exercises-list></app-exercises-list>
+        </div>        
+        <div *ngIf="activeRoute === '/programs'">
+             <app-program-list></app-program-list>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
