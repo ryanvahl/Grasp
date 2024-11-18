@@ -1,2 +1,17 @@
 <p>exercises-list works!</p>
 <p>Make a list of exercies with image of exercise</p>
+
+<ul>
+    <li *ngFor="let exercise of exercises">
+        Name: {{exercise.name}} <br>
+        Equipment: {{exercise.equipment}} <br>
+        Primary Muscle Worked: {{exercise.primaryMuscleWorked}} <br>
+    </li>
+</ul>
+
+<!-- id: string,
+name: string,
+equipment: string,
+primaryMuscleWorked: string,
+image: string
+} -->

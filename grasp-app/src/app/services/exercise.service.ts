@@ -8,7 +8,30 @@ export class ExerciseService {
 
   private exercises: Exercise[] = [];
 
-  getExercises(id: string): Exercise[] {
+  constructor(){
+
+    // get key and load values or empty if no values
+    let savedExercises = localStorage.getItem("exercises");
+    // USED THIS AFTER EXERCISE FORM CREATED //this.exercises = savedExercises ? JSON.parse(savedExercises) : [];
+
+    // load some hard-coded data until exercise form done
+    this.exercises = [{
+      "id": "1",
+      "name": "Bench Press",
+      "equipment": "Barbell",
+      "primaryMuscleWorked": "Chest",
+      "image": ""
+  },
+  {
+    "id": "2",
+    "name": "Squat",
+    "equipment": "Barbell",
+    "primaryMuscleWorked": "Quads",
+    "image": ""
+}];
+  }
+
+  getExercises(): Exercise[] {
     return this.exercises;
   }
 
@@ -22,9 +45,11 @@ export class ExerciseService {
     exercise.id = Date.now().toString();
 
     this.exercises.push(exercise);
+    localStorage.setItem("exercises", JSON.stringify(this.exercises));
   }
 
   updateExercise(updatedExercise: Exercise): void {
     let index = this.exercises.findIndex(res => res.id === updatedExercise.id);
+    localStorage.setItem("exercises", JSON.stringify(this.exercises));
   }
 }
