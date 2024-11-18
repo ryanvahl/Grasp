@@ -1,0 +1,23 @@
+<form [formGroup]="exerciseForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Name:</label>
+        <input type="text" formControlName="name">
+        <!-- <input type="text"> -->
+    </div>
+    <div>
+        <label>Equipment:</label>
+        <input type="text" formControlName="equipment">
+        <!-- <input type="text"> -->
+    </div>
+    <div>
+        <label>Primary Muscle Worked:</label>
+        <input type="text" formControlName="primaryMuscleWorked">
+        <!-- <input type="text"> -->
+    </div>
+    <div>
+        <label>Image:</label>
+        <input type="file" formControlName="imageExercise">
+        <!-- <input type="file"> -->
+    </div>
+    <button type="submit">Add Excercise</button>
+</form>

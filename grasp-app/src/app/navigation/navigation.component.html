@@ -2,12 +2,17 @@
     <mat-sidenav class="sidenav" #sidenav mode="side">
         <mat-list role="list">
             <mat-list-item role="listitem">
+                <a class="nav-link" [routerLink]="['/']">TODO</a>
+            </mat-list-item>
+            <mat-list-item role="listitem">
                 <a class="nav-link" [routerLink]="['/exercises']">Exercises</a>
             </mat-list-item>
             <mat-list-item role="listitem">
                 <a class="nav-link" [routerLink]="['/programs']">Programs</a>
             </mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
+            <mat-list-item role="listitem">
+                <a class="nav-link" [routerLink]="['/manage-exercises']">Manage Exercises</a>
+            </mat-list-item>
           </mat-list>
     </mat-sidenav>
 
@@ -19,6 +24,9 @@
         <div *ngIf="activeRoute === '/programs'">
              <app-program-list></app-program-list>
         </div>
+        <div *ngIf="activeRoute === '/manage-exercises'">
+            <app-exercise-form></app-exercise-form>
+        </div>        
         <div *ngIf="activeRoute === '/'">
             <app-todo></app-todo>
         </div>        
