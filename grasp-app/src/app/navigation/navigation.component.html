@@ -19,5 +19,8 @@
         <div *ngIf="activeRoute === '/programs'">
              <app-program-list></app-program-list>
         </div>
+        <div *ngIf="activeRoute === '/'">
+            <app-todo></app-todo>
+        </div>        
     </mat-sidenav-content>
 </mat-sidenav-container>

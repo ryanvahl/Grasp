@@ -7,11 +7,12 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ExercisesListComponent } from '../exercises-list/exercises-list.component';
 import { ProgramListComponent } from '../program-list/program-list.component';
+import { TodoComponent } from '../todo/todo.component';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [MatSidenavModule, MatCheckboxModule, MatButtonModule, RouterModule, CommonModule, ExercisesListComponent, ProgramListComponent, MatListModule],
+  imports: [MatSidenavModule, MatCheckboxModule, MatButtonModule, RouterModule, CommonModule, ExercisesListComponent, ProgramListComponent, MatListModule, TodoComponent],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
