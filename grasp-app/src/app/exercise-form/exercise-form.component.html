@@ -19,5 +19,5 @@
         <input type="file" formControlName="imageExercise">
         <!-- <input type="file"> -->
     </div>
-    <button type="submit">Add Excercise</button>
+    <button type="submit" [disabled]="exerciseForm.invalid">Add Excercise</button>
 </form>

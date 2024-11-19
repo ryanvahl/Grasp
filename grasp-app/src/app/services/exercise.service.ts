@@ -12,23 +12,23 @@ export class ExerciseService {
 
     // get key and load values or empty if no values
     let savedExercises = localStorage.getItem("exercises");
-    // USED THIS AFTER EXERCISE FORM CREATED //this.exercises = savedExercises ? JSON.parse(savedExercises) : [];
+    this.exercises = savedExercises ? JSON.parse(savedExercises) : [];
 
     // load some hard-coded data until exercise form done
-    this.exercises = [{
-      "id": "1",
-      "name": "Bench Press",
-      "equipment": "Barbell",
-      "primaryMuscleWorked": "Chest",
-      "image": ""
-  },
-  {
-    "id": "2",
-    "name": "Squat",
-    "equipment": "Barbell",
-    "primaryMuscleWorked": "Quads",
-    "image": ""
-}];
+//     this.exercises = [{
+//       "id": "1",
+//       "name": "Bench Press",
+//       "equipment": "Barbell",
+//       "primaryMuscleWorked": "Chest",
+//       "image": ""
+//   },
+//   {
+//     "id": "2",
+//     "name": "Squat",
+//     "equipment": "Barbell",
+//     "primaryMuscleWorked": "Quads",
+//     "image": ""
+// }];
   }
 
   getExercises(): Exercise[] {
