@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ExerciseService } from '../services/exercise.service';
+import { Exercise } from '../models/exercise';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercise-form',
@@ -10,7 +13,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } 
 })
 export class ExerciseFormComponent implements OnInit{
   
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder, private exerciseService: ExerciseService, private router: Router){}
 
   ngOnInit(): void {
     this.exerciseForm = this.formBuilder.group({
@@ -24,7 +27,11 @@ export class ExerciseFormComponent implements OnInit{
 
   onSubmit() {
     if(this.exerciseForm.valid) {
-      console.log("valid");
+      let exercise: Exercise = this.exerciseForm.value;
+      this.exerciseService.addExercise(exercise);
+
+      // go to list of exercises
+      this.router.navigate(['/exercises']);
     }
   }
 }

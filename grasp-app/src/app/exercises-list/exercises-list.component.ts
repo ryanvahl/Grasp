@@ -21,4 +21,7 @@ export class ExercisesListComponent implements OnInit{
     this.exercises = this.exerciseService.getExercises();
   }
 
+  deleteExercise(id: string) {
+    this.exerciseService.deleteExercise(id);
+  }
 }

@@ -13,22 +13,6 @@ export class ExerciseService {
     // get key and load values or empty if no values
     let savedExercises = localStorage.getItem("exercises");
     this.exercises = savedExercises ? JSON.parse(savedExercises) : [];
-
-    // load some hard-coded data until exercise form done
-//     this.exercises = [{
-//       "id": "1",
-//       "name": "Bench Press",
-//       "equipment": "Barbell",
-//       "primaryMuscleWorked": "Chest",
-//       "image": ""
-//   },
-//   {
-//     "id": "2",
-//     "name": "Squat",
-//     "equipment": "Barbell",
-//     "primaryMuscleWorked": "Quads",
-//     "image": ""
-// }];
   }
 
   getExercises(): Exercise[] {
@@ -50,6 +34,12 @@ export class ExerciseService {
 
   updateExercise(updatedExercise: Exercise): void {
     let index = this.exercises.findIndex(res => res.id === updatedExercise.id);
+    localStorage.setItem("exercises", JSON.stringify(this.exercises));
+  }
+
+  deleteExercise(id: string) {
+    let index = this.exercises.findIndex(res => res.id === id);
+    this.exercises.splice(index, 1);
     localStorage.setItem("exercises", JSON.stringify(this.exercises));
   }
 }

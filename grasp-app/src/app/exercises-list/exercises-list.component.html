@@ -1,17 +1,12 @@
-<p>exercises-list works!</p>
-<p>Make a list of exercies with image of exercise</p>
-
-<ul>
+<ul *ngIf="exercises.length; else noExercises">
     <li *ngFor="let exercise of exercises">
         Name: {{exercise.name}} <br>
         Equipment: {{exercise.equipment}} <br>
         Primary Muscle Worked: {{exercise.primaryMuscleWorked}} <br>
+        <button (click)="deleteExercise(exercise.id)">Delete</button>
     </li>
 </ul>
 
-<!-- id: string,
-name: string,
-equipment: string,
-primaryMuscleWorked: string,
-image: string
-} -->
+<ng-template #noExercises>
+    <p>No exercises available</p>
+</ng-template>
