@@ -4,6 +4,7 @@
         Equipment: {{exercise.equipment}} <br>
         Primary Muscle Worked: {{exercise.primaryMuscleWorked}} <br>
         <button (click)="deleteExercise(exercise.id)">Delete</button>
+        <button [routerLink]="['/manage-exercises', exercise.id]">Edit</button>
     </li>
 </ul>
 

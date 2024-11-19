@@ -18,6 +18,7 @@
 
     <mat-sidenav-content>
         <p><button mat-button (click)="sidenav.toggle()">Menu</button></p>
+        <!-- 
         <div *ngIf="activeRoute === '/exercises'">
             <app-exercises-list></app-exercises-list>
         </div>        
@@ -27,8 +28,13 @@
         <div *ngIf="activeRoute === '/manage-exercises'">
             <app-exercise-form></app-exercise-form>
         </div>        
+
+        <div *ngIf="activeRoute.substring(0, 18) === '/manage-exercises/'">
+            <app-exercise-form></app-exercise-form>
+        </div>        
         <div *ngIf="activeRoute === '/'">
             <app-todo></app-todo>
-        </div>        
+        </div>         -->
+        <router-outlet />
     </mat-sidenav-content>
 </mat-sidenav-container>

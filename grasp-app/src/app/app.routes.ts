@@ -10,5 +10,6 @@ export const routes: Routes = [
     {path:"", component: TodoComponent},
     {path:"exercises", component: ExercisesListComponent},
     {path: "programs", component: ProgramListComponent},
-    {path: "manage-exercises", component: ExerciseFormComponent}
+    {path: "manage-exercises", component: ExerciseFormComponent},
+    {path: "manage-exercises/:id", component: ExerciseFormComponent}
 ];

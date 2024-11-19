@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ExerciseService } from '../services/exercise.service';
 import { Exercise } from '../models/exercise';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-exercises-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './exercises-list.component.html',
   styleUrl: './exercises-list.component.css'
 })

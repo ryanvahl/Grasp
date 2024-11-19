@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExerciseService } from '../services/exercise.service';
 import { Exercise } from '../models/exercise';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-exercise-form',
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ExerciseFormComponent implements OnInit{
   
-  constructor(private formBuilder: FormBuilder, private exerciseService: ExerciseService, private router: Router){}
+  constructor(private formBuilder: FormBuilder, private exerciseService: ExerciseService, private router: Router, private activatedRoute: ActivatedRoute ){}
 
   ngOnInit(): void {
     this.exerciseForm = this.formBuilder.group({
@@ -22,7 +22,19 @@ export class ExerciseFormComponent implements OnInit{
       primaryMuscleWorked: ['', Validators.required],
       imageExercise: ['', Validators.required]
     });
+
+    // grab id in the url
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+
+    if(id) {
+      let exercise = this.exerciseService.getExercise(id);
+      // if not undefined, load values into form
+      if(exercise){
+        this.exerciseForm.patchValue(exercise);
+      }      
+    }
   }
+  
   exerciseForm: FormGroup = new FormGroup({});
 
   onSubmit() {
