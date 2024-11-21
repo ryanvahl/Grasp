@@ -1,0 +1,21 @@
+<form [formGroup]="programForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Name:</label>
+        <input type="text" formControlName="name">
+        <!-- <input type="text"> -->
+    </div>
+    <div>
+        <button type="button" (click)="addExercise()">Add Exercise</button>
+        <h2>Excercises:</h2>
+        <div *ngFor="let n of numberOfExercises; let i = index" id="{{i}}">
+            <label></label>
+            <input type="text">
+            <label>Name:</label>
+            <input type="text">
+        </div>
+        <label>Primary Muscle Worked:</label>
+        <input type="text" formControlName="primaryMuscleWorked">
+        <!-- <input type="text"> -->
+    </div>
+    <button type="submit" [disabled]="programForm.invalid">Save</button>
+</form>
