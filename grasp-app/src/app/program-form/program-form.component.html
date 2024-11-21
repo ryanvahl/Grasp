@@ -12,6 +12,10 @@
             <input type="text">
             <label>Name:</label>
             <input type="text">
+            <mat-label>Exercise</mat-label>
+            <select matNativeControl required>
+              <option value="volvo" *ngFor="let e of exercises">{{e.name}}</option>
+            </select>
         </div>
         <label>Primary Muscle Worked:</label>
         <input type="text" formControlName="primaryMuscleWorked">

@@ -40,7 +40,17 @@ export class ExerciseFormComponent implements OnInit{
   onSubmit() {
     if(this.exerciseForm.valid) {
       let exercise: Exercise = this.exerciseForm.value;
+
+    // grab id in the url
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+
+    if(id) {
+      this.exerciseService.updateExercise(id, exercise);
+    } else {
       this.exerciseService.addExercise(exercise);
+    }
+
+
 
       // go to list of exercises
       this.router.navigate(['/exercises']);

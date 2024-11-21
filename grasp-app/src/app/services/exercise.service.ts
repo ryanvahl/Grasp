@@ -32,8 +32,9 @@ export class ExerciseService {
     localStorage.setItem("exercises", JSON.stringify(this.exercises));
   }
 
-  updateExercise(updatedExercise: Exercise): void {
-    let index = this.exercises.findIndex(res => res.id === updatedExercise.id);
+  updateExercise(id: string, updatedExercise: Exercise): void {
+    let index = this.exercises.findIndex(res => res.id === id);
+    this.exercises[index] = updatedExercise;
     localStorage.setItem("exercises", JSON.stringify(this.exercises));
   }
 
