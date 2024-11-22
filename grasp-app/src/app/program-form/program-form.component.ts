@@ -17,15 +17,15 @@ export class ProgramFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private programService: ProgramService, private exerciseService: ExerciseService){}
   
+
+
   exercises: Exercise[] = [];
-  
+
   ngOnInit(): void {
     this.exercises = this.exerciseService.getExercises();
   }
 
   programForm: FormGroup = new FormGroup({});
-
-
 
   onSubmit() {
     if(this.programForm.valid) {
@@ -33,10 +33,28 @@ export class ProgramFormComponent implements OnInit {
     }
   }
 
-  // need to define array as number since pushing numbers
+  // used to create html section dynamically. Need to define array as number since pushing numbers
   numberOfExercises: number[] = [];
 
   addExercise() {
     this.numberOfExercises.push(1);
+  }
+
+  addSet(e: Event) {    
+    let htmlElment = e.target as HTMLElement;
+    
+    // attach to existing reps and set element and not the button
+    let htmlElmentSibling = htmlElment.nextElementSibling;
+    if (htmlElmentSibling) {
+      htmlElmentSibling.innerHTML += 
+      `
+      <div>
+      <label>Reps</label>
+      <input type="number">
+      <label>Sets</label>
+      <input type="number">
+      </div>
+      `;    
+    }
   }
 }
