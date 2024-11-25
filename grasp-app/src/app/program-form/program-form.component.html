@@ -3,21 +3,81 @@
         <label>Name:</label>
         <input type="text" formControlName="name">        
     </div> -->
-    <div>
+    <div id="exercise-list">
         <button type="button" (click)="addExercise()">Add Exercise</button>
-        <div *ngFor="let n of numberOfExercises; let i = index" id="{{i}}">
+        <div *ngFor="let n of numberOfExercises; let i = index" id="exercise{{i}}">
             <mat-label>Exercise</mat-label>
             <select matNativeControl required>
-              <option value="volvo" *ngFor="let e of exercises">{{e.name}}</option>
+              <option *ngFor="let e of exercises">{{e.name}}</option>
             </select>
             <button type="button" (click)="addSet($event)">Add Set</button>
-                <label>Reps</label>
-                <input type="number">
-                <label>Sets</label>
-                <input type="number">
+                <table id="table{{i}}">
+                    <tr>
+                    <th>Set</th>
+                    <th>Reps</th>
+                    <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            <label>Reps</label>
+                            <input type="number">
+                        </td>
+                        <td>
+                            <button type="button" (click)="deleteSet($event)">X</button>
+                        </td>
+                    </tr>
+                </table>
         </div>
-        <!-- <label>Primary Muscle Worked:</label>
-        <input type="text" formControlName="primaryMuscleWorked"> -->
     </div>
     <button type="submit" [disabled]="programForm.invalid">Save</button>
 </form>
+
+<!-- <mat-text-column name="score"></mat-text-column> -->
+
+<!-- 
+<table>
+    <tr>
+      <th>Set</th>
+      <th>Reps</th>
+      <th>Action</th>
+    </tr>
+</table>
+  
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+
+
+  <table>
+    <tr>
+    <th>Set</th>
+    <th>Reps</th>
+    <th>Action</th>
+    </tr>
+    <tr>
+        <td>
+            <label>Reps</label>
+            <input type="number">
+        </td>
+        <td>1</td>
+        <td>Germany</td>
+    </tr>
+    <tr>
+        <td>
+            <label>Reps</label>
+            <input type="number">
+        </td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+    </tr>
+</table> -->
