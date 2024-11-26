@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import { ExerciseService } from '../services/exercise.service';
 import { Exercise } from '../models/exercise';
+import { Program } from '../models/program';
+import { ProgramExercise } from '../models/programExercise';
 
 @Component({
   selector: 'app-program-form',
@@ -18,8 +20,8 @@ export class ProgramFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private programService: ProgramService, private exerciseService: ExerciseService){}
 
   exercises: Exercise[] = [];
-  // tableCount: number = 0;
-
+  program: Program = {} as Program;
+  
   ngOnInit(): void {
     this.exercises = this.exerciseService.getExercises();
   }
@@ -27,19 +29,74 @@ export class ProgramFormComponent implements OnInit {
   programForm: FormGroup = new FormGroup({});
 
   onSubmit() {
+    let programName = document.getElementById("program-name") as HTMLInputElement;
+    this.program.name = programName.value;
+    this.program.exercises = [];
+    this.program.id = Date.now().toString();
+    this.program.dateCreated = new Date();
+    
     if(this.programForm.valid) {
     console.log("program submitted!");
     
-    const elements = document.querySelectorAll("#exercise-list");
-    console.log(elements[0]);
+    const elements = document.querySelectorAll("#exercise-list");    
 
-    const select = elements[0].getElementsByTagName("select");
-    console.log(select);
+    let repArr: number[] = [];
+    let repArrTotal = [];
 
-    elements.forEach((element) => {
-      console.log(element);
+    elements[0].childNodes.forEach((el) => {
+
+      let programExercise: ProgramExercise = {} as ProgramExercise;
+      
+
+      if(el.firstChild?.nextSibling?.nodeName === "SELECT") {
+        const selected = el.firstChild?.nextSibling as HTMLSelectElement;
+        console.log(selected.value);
+        programExercise.exercise = selected.value;
+        repArrTotal.push(selected.value);
+      }
+
+      if(el && el.nodeName === "DIV") {
+        if(el.lastChild?.nodeName === "TABLE") {
+          // console.log(el.lastChild);
+          const table = el.lastChild as HTMLTableElement;
+
+          // TABLE LOOP. Collects all rows for one selected exercise
+          table.childNodes.forEach((tblEl) => {
+            if(tblEl.nodeName === "TR") {
+              // console.log(tblEl.nodeName);
+              if(tblEl.childNodes) {
+                tblEl.childNodes.forEach((trEl) => {
+                  // console.log(trEl.firstChild?.nodeName);
+                  if(trEl.firstChild?.nodeName === "INPUT") {
+                    const input = trEl.firstChild as HTMLInputElement;
+                    console.log(input.value);
+                    repArr.push(Number(input.value));
+                  }
+                });
+              }
+            }
+
+          });
+          console.log(repArr);
+
+        }
+
+        console.log(programExercise);
+        // add reps for current exercise
+        programExercise.reps = repArr;
+        
+
+        this.program.exercises.push(programExercise);
+
+        // clear reps
+        repArr = [];
+      }      
     });
+
+      console.log(this.program);
     }
+
+
   }
 
   // used to create html section dynamically. Need to define array as number since pushing numbers
@@ -63,10 +120,6 @@ export class ProgramFormComponent implements OnInit {
     tableDataSet.textContent = "3";
 
     let tableDataInputAndLabel = document.createElement('td');
-    
-    let label = document.createElement('label');
-    label.textContent = "Reps";
-    tableDataInputAndLabel.appendChild(label);
 
     let input = document.createElement('input');
     input.type = "number";
